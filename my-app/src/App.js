@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 const Father = styled.div`
   display: flex;
+  background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 const rotationAni = keyframes`
@@ -16,12 +17,12 @@ const rotationAni = keyframes`
   100%{
     transform:rotate(360deg);
     border-radius:0;
-
   }
 `;
 
 const Emoji = styled.span`
   font-size: 36px;
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Box = styled.div`
