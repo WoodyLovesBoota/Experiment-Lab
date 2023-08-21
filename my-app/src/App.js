@@ -50,7 +50,6 @@ function App() {
 
   useEffect(() => {
     getLocation();
-    console.log("a");
   }, [age]);
 
   return (
