@@ -1,5 +1,7 @@
 import { styled, createGlobalStyle } from "styled-components";
 import Word from "./Word";
+import ResultPage from "./ResultPage";
+import { useState } from "react";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -82,18 +84,32 @@ const Title = styled.div`
 `;
 
 function App() {
+  let answer = "reset";
+
+  const [res, setRes] = useState(false);
+  const checkResult = (result) => {
+    setRes(result);
+  };
+
+  const render = () => {
+    let words = [];
+    for (let i = 0; i < 7; i++) {
+      words.push(<Word answer={answer} checkResult={checkResult}></Word>);
+    }
+    return words;
+  };
   return (
     <>
       <GlobalStyle></GlobalStyle>
       <Container>
-        <Title>wordle</Title>
-        <Word first={true}></Word>
-        <Word></Word>
-        <Word></Word>
-        <Word></Word>
-        <Word></Word>
-        <Word></Word>
-        <Word></Word>
+        {res ? (
+          <ResultPage answer={answer}></ResultPage>
+        ) : (
+          <>
+            <Title>wordle</Title>
+            {render()};
+          </>
+        )}
       </Container>
     </>
   );

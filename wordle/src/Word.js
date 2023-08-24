@@ -1,8 +1,6 @@
 import { styled } from "styled-components";
 import Letter from "./Letter";
-import { useState } from "react";
-
-let answer = "reset";
+import { useState, useEffect } from "react";
 
 const WordForm = styled.form``;
 
@@ -12,17 +10,25 @@ const SubmitButton = styled.button.attrs({ type: "submit" })`
   height: 0;
 `;
 
-const Word = ({ first }) => {
+const Word = ({ answer, checkResult }) => {
   const [colors, setColors] = useState(["", "", "", "", ""]);
+  const [success, setSuccess] = useState(false);
   let checkArr = new Array(5).fill("");
+  const onSubmit = (e) => {
+    checkWord(e);
+    moveCursor(e);
+  };
+
+  const moveCursor = (e) => {
+    e.target.nextElementSibling.firstElementChild.focus();
+  };
+
   const checkWord = (e) => {
     let res = [];
     let green = 0;
     e.preventDefault();
     for (let i = 0; i < 5; i++) {
       res.push(e.target[i].value);
-    }
-    for (let i = 0; i < res.length; i++) {
       if (res[i] === answer[i]) {
         green++;
         checkArr[i] = "G";
@@ -33,7 +39,12 @@ const Word = ({ first }) => {
       }
     }
     setColors(checkArr);
+    if (green === 5) setSuccess(true);
   };
+
+  useEffect(() => {
+    checkResult(success);
+  }, [success]);
 
   const render = () => {
     let letters = [];
@@ -47,10 +58,12 @@ const Word = ({ first }) => {
   };
 
   return (
-    <WordForm onSubmit={checkWord}>
-      {render()}
-      <SubmitButton></SubmitButton>
-    </WordForm>
+    <>
+      <WordForm onSubmit={onSubmit}>
+        {render()}
+        <SubmitButton></SubmitButton>
+      </WordForm>
+    </>
   );
 };
 
