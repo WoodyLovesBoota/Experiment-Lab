@@ -1,7 +1,7 @@
 const Title = () => {
   return (
     <div>
-      <span>wordle</span>
+      <span>Wordle</span>
     </div>
   );
 };

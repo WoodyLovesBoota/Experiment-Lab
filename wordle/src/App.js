@@ -1,7 +1,8 @@
 import { styled, createGlobalStyle } from "styled-components";
 import Word from "./Word";
 import ResultPage from "./ResultPage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -68,6 +69,9 @@ const GlobalStyle = createGlobalStyle`
   .yellow{
     background-color:rgb(201, 201, 61);
   }
+  .gray {
+    background-color: gray
+  }
 `;
 
 const Container = styled.div`
@@ -80,21 +84,39 @@ const Container = styled.div`
 
 const Title = styled.div`
   height: 15vh;
-  font-size: 40px;
+  font-size: 36px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
 `;
 
 function App() {
-  let answer = "reset";
+  const getWord = async () => {
+    const res = await axios("https://random-word-api.herokuapp.com/word?length=5");
+    setAnswer(res.data[0]);
+  };
 
+  const [answer, setAnswer] = useState("");
   const [res, setRes] = useState(false);
+  const [isWin, setIsWin] = useState(true);
+  useEffect(() => {
+    getWord();
+  }, []);
+
   const checkResult = (result) => {
     setRes(result);
+  };
+
+  const checkIsWin = (result) => {
+    setIsWin(result);
   };
 
   const render = () => {
     let words = [];
     for (let i = 0; i < 7; i++) {
-      words.push(<Word answer={answer} checkResult={checkResult}></Word>);
+      words.push(
+        <Word key={i} answer={"reset"} checkResult={checkResult} checkIsWin={checkIsWin}></Word>
+      );
     }
     return words;
   };
@@ -103,11 +125,11 @@ function App() {
       <GlobalStyle></GlobalStyle>
       <Container>
         {res ? (
-          <ResultPage answer={answer}></ResultPage>
+          <ResultPage key={answer} answer={answer} isWin={isWin}></ResultPage>
         ) : (
           <>
-            <Title>wordle</Title>
-            {render()};
+            <Title>Wordle</Title>
+            {render()}
           </>
         )}
       </Container>

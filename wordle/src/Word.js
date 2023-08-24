@@ -10,7 +10,7 @@ const SubmitButton = styled.button.attrs({ type: "submit" })`
   height: 0;
 `;
 
-const Word = ({ answer, checkResult }) => {
+const Word = ({ answer, checkResult, checkIsWin }) => {
   const [colors, setColors] = useState(["", "", "", "", ""]);
   const [success, setSuccess] = useState(false);
   let checkArr = new Array(5).fill("");
@@ -19,9 +19,7 @@ const Word = ({ answer, checkResult }) => {
     moveCursor(e);
   };
 
-  const moveCursor = (e) => {
-    e.target.nextElementSibling.firstElementChild.focus();
-  };
+  const moveCursor = (e) => {};
 
   const checkWord = (e) => {
     let res = [];
@@ -40,19 +38,26 @@ const Word = ({ answer, checkResult }) => {
     }
     setColors(checkArr);
     if (green === 5) setSuccess(true);
+
+    if (e.target.nextElementSibling === null) {
+      if (green !== 5) checkIsWin(false);
+      checkResult(true);
+    } else e.target.nextElementSibling.firstElementChild.focus();
   };
 
   useEffect(() => {
     checkResult(success);
+    checkIsWin(true);
   }, [success]);
 
   const render = () => {
     let letters = [];
 
-    colors.forEach((element) => {
-      if (element === "G") letters.push(<Letter className={"green"}></Letter>);
-      else if (element === "Y") letters.push(<Letter className={"yellow"}></Letter>);
-      else letters.push(<Letter className={"gray"}></Letter>);
+    colors.forEach((element, index) => {
+      if (element === "G") letters.push(<Letter key={index} className={"green"}></Letter>);
+      else if (element === "Y") letters.push(<Letter key={index} className={"yellow"}></Letter>);
+      else if (element === "B") letters.push(<Letter key={index} className={"gray"}></Letter>);
+      else letters.push(<Letter key={index} className={"normal"}></Letter>);
     });
     return letters;
   };
