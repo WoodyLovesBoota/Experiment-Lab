@@ -12,6 +12,8 @@ const LetterInput = styled.input.attrs({ maxLength: 1, required: true })`
   font-size: 50px;
   color: white;
   text-transform: uppercase;
+  transition: background-color 1s ease-in-out;
+  caret-color: transparent;
 
   &:focus {
     outline: none;
@@ -19,7 +21,9 @@ const LetterInput = styled.input.attrs({ maxLength: 1, required: true })`
 `;
 
 const moveCursor = (e) => {
-  if (e.target.value.length === 1) {
+  if (e.keyCode === 8) {
+    e.target.previousSibling?.focus();
+  } else if (e.target.value.length === 1) {
     e.target.nextSibling?.focus();
   }
 };

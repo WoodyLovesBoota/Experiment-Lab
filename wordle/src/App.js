@@ -115,7 +115,7 @@ function App() {
     let words = [];
     for (let i = 0; i < 7; i++) {
       words.push(
-        <Word key={i} answer={"reset"} checkResult={checkResult} checkIsWin={checkIsWin}></Word>
+        <Word key={i} answer={answer} checkResult={checkResult} checkIsWin={checkIsWin}></Word>
       );
     }
     return words;
