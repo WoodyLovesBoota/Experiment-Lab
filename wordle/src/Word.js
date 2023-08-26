@@ -6,8 +6,6 @@ const WordForm = styled.form``;
 
 const SubmitButton = styled.button.attrs({ type: "submit" })`
   display: none;
-  width: 0;
-  height: 0;
 `;
 
 const Word = ({ answer, checkResult, checkIsWin }) => {
@@ -16,10 +14,7 @@ const Word = ({ answer, checkResult, checkIsWin }) => {
   let checkArr = new Array(5).fill("");
   const onSubmit = (e) => {
     checkWord(e);
-    moveCursor(e);
   };
-
-  const moveCursor = (e) => {};
 
   const checkWord = (e) => {
     let res = [];

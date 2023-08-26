@@ -70,7 +70,7 @@ const GlobalStyle = createGlobalStyle`
     background-color:rgb(201, 201, 61);
   }
   .gray {
-    background-color: gray
+    background-color: gray;
   }
 `;
 
@@ -97,14 +97,14 @@ function App() {
   };
 
   const [answer, setAnswer] = useState("");
-  const [res, setRes] = useState(false);
+  const [isFinish, setIsFinish] = useState(false);
   const [isWin, setIsWin] = useState(true);
   useEffect(() => {
     getWord();
   }, []);
 
   const checkResult = (result) => {
-    setRes(result);
+    setIsFinish(result);
   };
 
   const checkIsWin = (result) => {
@@ -124,7 +124,7 @@ function App() {
     <>
       <GlobalStyle></GlobalStyle>
       <Container>
-        {res ? (
+        {isFinish ? (
           <ResultPage key={answer} answer={answer} isWin={isWin}></ResultPage>
         ) : (
           <>
