@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/Experiment-Lab/static/js/main.cf3e792d.js",
+    "main.js": "/Experiment-Lab/static/js/main.a3ec823e.js",
     "index.html": "/Experiment-Lab/index.html",
-    "main.cf3e792d.js.map": "/Experiment-Lab/static/js/main.cf3e792d.js.map"
+    "main.a3ec823e.js.map": "/Experiment-Lab/static/js/main.a3ec823e.js.map"
   },
   "entrypoints": [
-    "static/js/main.cf3e792d.js"
+    "static/js/main.a3ec823e.js"
   ]
 }
