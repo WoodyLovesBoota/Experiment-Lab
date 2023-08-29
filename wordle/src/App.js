@@ -62,32 +62,16 @@ const GlobalStyle = createGlobalStyle`
   a{
     text-decoration:none;
     color:inherit;
-  }
-  .green {
-    background-color: green;
-  }
-  .yellow{
-    background-color:rgb(201, 201, 61);
-  }
-  .gray {
-    background-color: gray;
-  }
+  };
 `;
 
 const Container = styled.div`
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const Title = styled.div`
-  height: 15vh;
-  font-size: 36px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
+  padding: 5vh 0;
 `;
 
 function App() {
@@ -124,14 +108,7 @@ function App() {
     <>
       <GlobalStyle></GlobalStyle>
       <Container>
-        {isFinish ? (
-          <ResultPage key={answer} answer={answer} isWin={isWin}></ResultPage>
-        ) : (
-          <>
-            <Title>Wordle</Title>
-            {render()}
-          </>
-        )}
+        {isFinish ? <ResultPage key={answer} answer={answer} isWin={isWin}></ResultPage> : render()}
       </Container>
     </>
   );

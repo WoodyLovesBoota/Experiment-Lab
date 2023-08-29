@@ -2,8 +2,6 @@ import { styled } from "styled-components";
 import Letter from "./Letter";
 import { useState, useEffect } from "react";
 
-const WordForm = styled.form``;
-
 const SubmitButton = styled.button.attrs({ type: "submit" })`
   display: none;
 `;
@@ -32,6 +30,7 @@ const Word = ({ answer, checkResult, checkIsWin }) => {
       }
     }
     setColors(checkArr);
+
     if (green === 5) setSuccess(true);
 
     if (e.target.nextElementSibling === null) {
@@ -49,20 +48,20 @@ const Word = ({ answer, checkResult, checkIsWin }) => {
     let letters = [];
 
     colors.forEach((element, index) => {
-      if (element === "G") letters.push(<Letter key={index} className={"green"}></Letter>);
-      else if (element === "Y") letters.push(<Letter key={index} className={"yellow"}></Letter>);
-      else if (element === "B") letters.push(<Letter key={index} className={"gray"}></Letter>);
-      else letters.push(<Letter key={index} className={"normal"}></Letter>);
+      if (element === "G") letters.push(<Letter key={index} bgcolor="#539165" />);
+      else if (element === "Y") letters.push(<Letter key={index} bgcolor="#F7C04A" />);
+      else if (element === "B") letters.push(<Letter key={index} bgcolor="gray" />);
+      else letters.push(<Letter key={index} bgcolor="#dcdde1"></Letter>);
     });
     return letters;
   };
 
   return (
     <>
-      <WordForm onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
         {render()}
         <SubmitButton></SubmitButton>
-      </WordForm>
+      </form>
     </>
   );
 };

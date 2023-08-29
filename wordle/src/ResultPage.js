@@ -1,5 +1,5 @@
 import { styled, keyframes } from "styled-components";
-import { faR, faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Container = styled.div`
@@ -11,15 +11,23 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0;
   h1 {
-    font-size: 48px;
-    margin-bottom: 30px;
+    font-size: 5vw;
+    margin-bottom: 3vw;
   }
-  h2 {
-    font-size: 64px;
-    margin-bottom: 20px;
-    color: green;
-    font-weight: 600;
+  div {
+    display: flex;
+    span {
+      font-size: 7.5vw;
+      width: 7vw;
+      height: 7vw;
+      font-weight: 700;
+      margin-right: 1vw;
+      background-color: #539165;
+      text-align: center;
+      vertical-align: center;
+    }
   }
 `;
 
@@ -29,15 +37,15 @@ const rotationAni = keyframes`
 `;
 
 const Button = styled.button`
-  margin-top: 40px;
+  margin-top: 4vw;
   border: none;
   color: white;
   background-color: black;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 2.5vw;
   span {
     display: block;
-    font-size: 48px;
+    font-size: 5vw;
     &:hover {
       animation: ${rotationAni} 2s linear infinite;
     }
@@ -53,7 +61,13 @@ const ResultPage = ({ answer, isWin }) => {
     <Container>
       <h1>{isWin ? "GOOD !!!!" : "So close..."}</h1>
       <h1>The answer is...</h1>
-      <h2>{answer.toUpperCase()}</h2>
+      <div>
+        <span>{answer[0].toUpperCase()}</span>
+        <span>{answer[1].toUpperCase()}</span>
+        <span>{answer[2].toUpperCase()}</span>
+        <span>{answer[3].toUpperCase()}</span>
+        <span>{answer[4].toUpperCase()}</span>
+      </div>
       <Button onClick={refreshPage}>
         <span>
           <FontAwesomeIcon icon={faRotateRight}></FontAwesomeIcon>
