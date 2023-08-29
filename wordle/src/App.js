@@ -83,6 +83,7 @@ function App() {
   const [answer, setAnswer] = useState("");
   const [isFinish, setIsFinish] = useState(false);
   const [isWin, setIsWin] = useState(true);
+
   useEffect(() => {
     getWord();
   }, []);
@@ -99,7 +100,13 @@ function App() {
     let words = [];
     for (let i = 0; i < 7; i++) {
       words.push(
-        <Word key={i} answer={answer} checkResult={checkResult} checkIsWin={checkIsWin}></Word>
+        <Word
+          key={i}
+          answer={answer}
+          checkResult={checkResult}
+          checkIsWin={checkIsWin}
+          num={i}
+        ></Word>
       );
     }
     return words;

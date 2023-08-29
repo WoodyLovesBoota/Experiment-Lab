@@ -6,7 +6,7 @@ const SubmitButton = styled.button.attrs({ type: "submit" })`
   display: none;
 `;
 
-const Word = ({ answer, checkResult, checkIsWin }) => {
+const Word = ({ num, answer, checkResult, checkIsWin }) => {
   const [colors, setColors] = useState(["", "", "", "", ""]);
   const [success, setSuccess] = useState(false);
   let checkArr = new Array(5).fill("");
@@ -51,7 +51,10 @@ const Word = ({ answer, checkResult, checkIsWin }) => {
       if (element === "G") letters.push(<Letter key={index} bgcolor="#539165" />);
       else if (element === "Y") letters.push(<Letter key={index} bgcolor="#F7C04A" />);
       else if (element === "B") letters.push(<Letter key={index} bgcolor="gray" />);
-      else letters.push(<Letter key={index} bgcolor="#dcdde1"></Letter>);
+      else
+        letters.push(
+          <Letter key={index} bgcolor="#dcdde1" focus={num === 0 && index === 0}></Letter>
+        );
     });
     return letters;
   };
