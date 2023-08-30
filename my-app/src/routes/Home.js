@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -75,6 +75,7 @@ const Home = () => {
     <div>
       <h1>This is Home Screen</h1>
       <User></User>
+      <Outlet></Outlet>
     </div>
   );
 };
