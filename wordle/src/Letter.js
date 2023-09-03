@@ -20,7 +20,7 @@ const LetterInput = styled.input.attrs({
   caret-color: transparent;
 
   &:focus {
-    /* outline: none; */
+    outline: none;
   }
 `;
 
